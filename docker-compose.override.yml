@@ -1,0 +1,18 @@
+# Auto-loaded by `docker compose up` for local development.
+# Production must use an explicit `-f` list, which suppresses this file.
+#
+# NOTE: only ./src and ./scripts are bind-mounted. Mounting the repo root would
+# let a Windows-built node_modules shadow the linux-x64 one in the image and the
+# container would die with "invalid ELF header".
+services:
+  bot:
+    build:
+      target: dev
+    environment:
+      NODE_ENV: development
+      LOG_LEVEL: debug
+    volumes:
+      - ./src:/app/src
+      - ./scripts:/app/scripts
+      - botdata:/app/data
+    restart: "no"

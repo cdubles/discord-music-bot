@@ -1,0 +1,17 @@
+# Production overlay. Deploy with:
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+# The explicit -f list stops docker-compose.override.yml from auto-loading.
+services:
+  bot:
+    build:
+      target: runtime
+    environment:
+      NODE_ENV: production
+      LOG_LEVEL: info
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    mem_limit: 768m

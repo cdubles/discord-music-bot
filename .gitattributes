@@ -1,2 +1,6 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Auto detect text files and normalize to LF so scripts work inside Linux containers
+* text=auto eol=lf
+*.sh text eol=lf
+*.png binary
+*.jpg binary
+*.db binary
